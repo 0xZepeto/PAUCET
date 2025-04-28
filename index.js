@@ -25,6 +25,11 @@ const main = async () => {
     const walletAddress = loadAddress();
     let proxies = loadProxies();
 
+    // Periksa apakah jumlah akun dan token sama
+    if (accounts.length !== tokens.length) {
+      log(`Peringatan: Jumlah username (${accounts.length}) tidak sama dengan jumlah token (${tokens.length}). Hanya memproses hingga jumlah yang lebih kecil.`);
+    }
+
     // Muat daftar akun yang sudah claim
     const claimedAccounts = loadClaimedAccounts();
     const today = new Date().toISOString().split('T')[0]; // Tanggal hari ini
@@ -35,20 +40,17 @@ const main = async () => {
       proxies = [null]; // Tanpa proxy
     }
 
+    // Iterasi melalui proxy
     for (const proxy of proxies) {
-      for (const account of accounts) {
+      // Iterasi melalui akun, batasi hingga jumlah token yang tersedia
+      for (let i = 0; i < Math.min(accounts.length, tokens.length); i++) {
+        const account = accounts[i];
+        const token = tokens[i];
         const username = account.username;
 
         // Periksa apakah akun sudah claim hari ini
         if (claimedAccounts[username] === today) {
           log(`Akun ${username} sudah claim hari ini. Lewati.`);
-          continue;
-        }
-
-        // Ambil token untuk akun ini
-        const token = tokens.find(t => t.username === username);
-        if (!token) {
-          log(`Token tidak ditemukan untuk ${username}. Lewati.`);
           continue;
         }
 
