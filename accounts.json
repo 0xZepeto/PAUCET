@@ -1,1 +1,11 @@
-
+[
+  {
+    "username": "twitter1",
+    "password": "password1",
+    "email": "email1@example.com" // optional
+  },
+  {
+    "username": "twitter2",
+    "password": "password2"
+  }
+]
