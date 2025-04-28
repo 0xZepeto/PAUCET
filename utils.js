@@ -16,8 +16,8 @@ const loadTokens = () => {
   if (!fs.existsSync(tokenPath)) return [];
   const tokens = fs.readFileSync(tokenPath, 'utf-8').trim().split('\n');
   return tokens.map(line => {
-    const [username, oauthToken, oauthVerifier] = line.split(',');
-    return { username: username.trim(), oauthToken: oauthToken.trim(), oauthVerifier: oauthVerifier.trim() };
+    const [oauthToken, oauthVerifier] = line.split(',');
+    return { oauthToken: oauthToken.trim(), oauthVerifier: oauthVerifier.trim() };
   });
 };
 
