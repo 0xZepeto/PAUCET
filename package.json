@@ -1,1 +1,17 @@
-
+{
+  "name": "PAUCET",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.6.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "axios": "^1.6.2",
+    "axios-retry": "^3.8.0",
+    "dotenv": "^16.4.1",
+    "anticaptcha": "^1.0.5"
+  }
+}
